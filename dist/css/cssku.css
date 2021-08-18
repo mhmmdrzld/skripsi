@@ -1,0 +1,12 @@
+.indent-30 {
+	text-indent: 30px;
+}
+
+.konten {
+	height: 600px;
+	overflow: auto;
+}
+
+.blck {
+	border: 1px solid black;
+}
