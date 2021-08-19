@@ -20,11 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		// $data['data'] = $this->M_finansial->lihat_permohonan();
-        $this->load->view('template/header');
-        $this->load->view('beranda');
-        // $this->load->view('Finansial/Permohonan/V_permohonan'); //$data
-        $this->load->view('template/footer');
+		$this->load->view('welcome_message');
 	}
-
 }
