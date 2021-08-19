@@ -42,7 +42,7 @@ class Login extends CI_Controller
 				$query_get = $this->model->get_data_sekolah($dt->id);
 				$dt_sekolah = $query_get->row();
 				if ($dt_sekolah->status === 'Belum Verifikasi') {
-					$this->session->set_flashdata('alert', ['type' => 'error', 'message' => 'Mohon Ditunggu Proses Verifikasi, Harap Cek Secara Berkala !!']);
+					$this->session->set_flashdata('alert', ['type' => 'warning', 'message' => 'Mohon Ditunggu Proses Verifikasi, Harap Cek Secara Berkala !!']);
 					session_destroy();
 					redirect('Login');
 				} elseif ($dt_sekolah->status === 'Tidak Aktif') {
@@ -51,7 +51,7 @@ class Login extends CI_Controller
 					redirect('Login');
 				}
 			}
-			$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masul']);
+			$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
 			redirect('Dashboard');
 		} else {
 			$this->session->set_flashdata('alert', ['type' => 'error', 'message' => 'Nama Pengguna atau Kata Sandi Salah !!']);
@@ -72,13 +72,10 @@ class Login extends CI_Controller
 		$data = $this->input->post(null, true);
 		$result =  $this->model->proses_daftar($data);
 		if ($result) {
-			$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Login']);
-			redirect('Dashboard');
+			$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Harap Tunggu 1x24 Jam, Untuk Verifikasi Akun']);
+		} else {
+			$this->session->set_flashdata('alert', ['type' => 'warning', 'message' => 'Gagal Daftar']);
 		}
-	}
-
-	public function result()
-	{
-		$this->load->view('login/result');
+		redirect('Login');
 	}
 }
