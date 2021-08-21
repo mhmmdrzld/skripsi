@@ -18,14 +18,22 @@ class M_sekolah extends CI_Model
         $columnName = $postData['columns'][$columnIndex]['data']; // Column name
         $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
         $searchValue = $postData['search']['value']; // Search value
+
         ## Search 
+        $search_arr = array();
         $searchQuery = "";
+
         if ($searchValue != '') {
-            $searchQuery = " 
+            $search_arr[] = " 
             (namasekolah like '%" . $searchValue . "%' or 
             npsn like '%" . $searchValue . "%' 
             or  status like '%" . $searchValue . "%' ) ";
         }
+
+        if (count($search_arr) > 0) {
+            $searchQuery = implode(" and ", $search_arr);
+        }
+
 
         ## Total number of records without filtering
         $this->db->select('count(*) as allcount');
@@ -109,7 +117,6 @@ class M_sekolah extends CI_Model
         $query = $this->db->where('s.npsn=', $id)->get('sekolah s');
         return $query;
     }
-
 
     function update($post = NULL)
     {
