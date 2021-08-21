@@ -46,7 +46,7 @@
                         <textarea name="alamatsekolah" class="form-control" id="" cols="30" rows="5">Alamat Sekolah</textarea>
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                                <span class="fas fa-map-marker-alt"></span>
                             </div>
                         </div>
                     </div>

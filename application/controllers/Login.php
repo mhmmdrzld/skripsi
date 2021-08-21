@@ -43,16 +43,26 @@ class Login extends CI_Controller
 				$dt_sekolah = $query_get->row();
 				if ($dt_sekolah->status === 'Belum Verifikasi') {
 					$this->session->set_flashdata('alert', ['type' => 'warning', 'message' => 'Mohon Ditunggu Proses Verifikasi, Harap Cek Secara Berkala !!']);
-					session_destroy();
 					redirect('Login');
+					session_destroy();
 				} elseif ($dt_sekolah->status === 'Tidak Aktif') {
 					$this->session->set_flashdata('alert', ['type' => 'error', 'message' => 'Akun Sudah Tidak Aktif !!']);
-					session_destroy();
 					redirect('Login');
+					session_destroy();
 				}
+				$data['nama_sekolah'] = $dt->nama_sekolah;
+				$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
+				redirect('operator/Beranda');
+			} elseif ($dt->level === 'Admin') {
+				$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
+				redirect('admin/Beranda');
+			} elseif ($dt->level === 'Siswa') {
+				$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
+				redirect('siswa/Beranda');
+			} else {
+				$this->session->set_flashdata('alert', ['type' => 'error', 'message' => 'Nama Pengguna atau Kata Sandi Salah !!']);
+				redirect('Login');
 			}
-			$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
-			redirect('Dashboard');
 		} else {
 			$this->session->set_flashdata('alert', ['type' => 'error', 'message' => 'Nama Pengguna atau Kata Sandi Salah !!']);
 			redirect('Login');
