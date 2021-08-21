@@ -15,7 +15,7 @@ class Sekolah extends MY_Controller
 
     public function index()
     {
-        $data['title'] = "Data Sekolah <b>" . $_SESSION['nama_sekolah'] . "</b>";
+        $data['title'] = "Data Sekolah";
         $this->load->view('operator/v_sekolah', $data);
     }
 
