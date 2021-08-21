@@ -27,6 +27,24 @@
         'placeholder': 'dd/mm/yyyy'
     });
 
+    function DatesFormat(tgl) {
+
+        if (tgl) {
+            if (tgl != '0000-00-00') {
+                return moment(moment(tgl, 'YYYY-MM-DD')).format('DD-MM-YYYY')
+            } else {
+                return ""
+            }
+        } else {
+            return ""
+        }
+    }
+
+    function TimesFormat(time) {
+
+        return moment(moment(time, 'hh:mm:ss')).format('h:mm')
+    }
+
     function ajax_click(data, data_ajax, url, action) {
         $('#form-input').prop('action', action)
         $.ajax({
