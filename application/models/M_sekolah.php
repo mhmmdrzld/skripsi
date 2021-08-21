@@ -6,7 +6,7 @@ class M_sekolah extends CI_Model
 
     private $_table = 'sekolah';
 
-    function GetSekolah($postData = null)
+    function GetSekolah($postData = NULL, $npsn = NULL)
     {
         $response = array();
 
@@ -28,6 +28,10 @@ class M_sekolah extends CI_Model
             (namasekolah like '%" . $searchValue . "%' or 
             npsn like '%" . $searchValue . "%' 
             or  status like '%" . $searchValue . "%' ) ";
+        }
+
+        if ($npsn) {
+            $search_arr[] = "  npsn = '$npsn'";
         }
 
         if (count($search_arr) > 0) {
