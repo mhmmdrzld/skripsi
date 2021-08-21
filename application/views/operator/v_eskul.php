@@ -56,7 +56,7 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>ID Kelas</th>
+                                                <th>ID Ekstrakurikuler</th>
                                                 <th>Nama Ekstrakurikuler</th>
                                                 <th>Aksi</th>
                                             </tr>

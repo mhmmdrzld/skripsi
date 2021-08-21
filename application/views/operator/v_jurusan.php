@@ -56,7 +56,7 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>ID Kelas</th>
+                                                <th>ID Jurusan</th>
                                                 <th>Nama Jurusan</th>
                                                 <th>Aksi</th>
                                             </tr>
