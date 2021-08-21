@@ -37,7 +37,6 @@ class Login extends CI_Controller
 				'status' => 'Login'
 			);
 			$this->session->set_userdata($data);
-
 			if ($dt->level === 'Operator') {
 				$query_get = $this->model->get_data_sekolah($dt->id);
 				$dt_sekolah = $query_get->row();
@@ -50,7 +49,9 @@ class Login extends CI_Controller
 					redirect('Login');
 					session_destroy();
 				}
-				$data['nama_sekolah'] = $dt->nama_sekolah;
+				$data['nama_sekolah'] = $dt_sekolah->namasekolah;
+				$data['npsn'] = $dt_sekolah->npsn;
+				$this->session->set_userdata($data);
 				$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
 				redirect('operator/Beranda');
 			} elseif ($dt->level === 'Admin') {

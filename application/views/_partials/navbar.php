@@ -93,7 +93,8 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-user"></i>
-                    <?= $_SESSION['username'] ?>
+                    <b> <?= $_SESSION['username'] ?></b>
+                    <?= ($_SESSION['nama_sekolah'] ? ' ( ' . $_SESSION['nama_sekolah'] . ' )' : '') ?>
                 </a>
             </li>
             <li class="nav-item">

@@ -50,7 +50,7 @@ class M_login extends CI_Model
 
     public function get_data_sekolah($id)
     {
-        $this->db->select('status,namasekolah');
+        $this->db->select('npsn,status,namasekolah');
         $this->db->where('idakun', $id);
         $query = $this->db->get('sekolah');
         return $query;

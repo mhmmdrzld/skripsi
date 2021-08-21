@@ -104,6 +104,34 @@
         }
     }
 
+
+    function ajax_table(param) {
+        const table = $('#tabel-data').DataTable({
+            "lengthMenu": [
+                [10, 25, 50, 100],
+                [10, 25, 50, 100]
+            ],
+            "responsive": true,
+            "language": {
+                "url": "<?= base_url() ?>plugins/Indonesian-Alternative.json"
+            },
+            'processing': true,
+            'serverSide': true,
+            'serverMethod': 'post',
+            'ajax': {
+                'url': param.url,
+                'data': param.data
+            },
+            "order": param.order,
+            'columns': param.columns,
+            "columnDefs": param.columnDefs,
+            drawCallback: function(settings) {
+                $('[data-toggle="tooltip"]').tooltip();
+            }
+        });
+        return table
+    }
+
     function swal(title, text, icon, showConfirmButton = false, timer = 1500) {
         Swal.fire({
             title,
