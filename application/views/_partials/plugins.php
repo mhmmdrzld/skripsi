@@ -27,8 +27,7 @@
         'placeholder': 'dd/mm/yyyy'
     });
 
-    function DatesFormat(tgl) {
-
+    function Tanggal(tgl) {
         if (tgl) {
             if (tgl != '0000-00-00') {
                 return moment(moment(tgl, 'YYYY-MM-DD')).format('DD-MM-YYYY')
@@ -107,12 +106,12 @@
                     console.log(r)
                     swal('Status', 'Berhasil', 'success')
                     $('#modaloverlay2').hide();
-                    location.reload();
+                     location.reload();
                 },
                 error(e) {
                     swal('Status', 'Gagal Disimpan', 'warning')
                     $('#modaloverlay2').hide();
-                    location.reload();
+                       location.reload();
                 }
             });
 
@@ -176,17 +175,6 @@
         });
     };
 
-    function tanggal_null(tgl) {
-        if (tgl) {
-            if (tgl != '0000-00-00') {
-                return moment(moment(tgl, 'YYYY-MM-DD')).format('DD-MM-YYYY')
-            } else {
-                return ""
-            }
-        } else {
-            return ""
-        }
-    }
 
 
     //validator
