@@ -11,8 +11,22 @@ class Master extends MY_Controller
 
     public function GetDataEskul()
     {
-        $id = $this->input->get('id', TRUE);
+        $id = $this->input->post('id', TRUE);
         $data = $this->model->GetDataEskul($id)->result();
+        echo json_encode($data);
+    }
+
+    public function GetDataKelas()
+    {
+        $id = $this->input->post('id', TRUE);
+        $data = $this->model->GetDataKelas($id)->result();
+        echo json_encode($data);
+    }
+
+    public function GetDataJurusan()
+    {
+        $id = $this->input->post('id', TRUE);
+        $data = $this->model->GetDataJurusan($id)->result();
         echo json_encode($data);
     }
 }
