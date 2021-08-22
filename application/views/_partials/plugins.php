@@ -106,12 +106,12 @@
                     console.log(r)
                     swal('Status', 'Berhasil', 'success')
                     $('#modaloverlay2').hide();
-                     location.reload();
+                    location.reload();
                 },
                 error(e) {
                     swal('Status', 'Gagal Disimpan', 'warning')
                     $('#modaloverlay2').hide();
-                       location.reload();
+                    location.reload();
                 }
             });
 
