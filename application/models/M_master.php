@@ -10,6 +10,14 @@ class M_master extends CI_Model
         return $query;
     }
 
+    function GetDataSiswa($npsn = NULL)
+    {
+        ($npsn ? $this->db->where('npsn=', $npsn) : '');
+        $this->db->order_by('namasiswa', 'asc');
+        $query = $this->db->get('siswa');
+        return $query;
+    }
+
     function GetDataKelas($npsn = NULL)
     {
         ($npsn ? $this->db->where('npsn=', $npsn) : '');

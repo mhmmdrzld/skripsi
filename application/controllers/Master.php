@@ -16,6 +16,13 @@ class Master extends MY_Controller
         echo json_encode($data);
     }
 
+    public function GetDataSiswa()
+    {
+        $id = $this->input->post('id', TRUE);
+        $data = $this->model->GetDataSiswa($id)->result();
+        echo json_encode($data);
+    }
+
     public function GetDataKelas()
     {
         $id = $this->input->post('id', TRUE);
