@@ -42,8 +42,12 @@
                             <li><a href="<?= site_url('operator/Jadwal'); ?>" class="dropdown-item">Data Jadwal</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a href="<?= site_url('admin/Berita'); ?>" class="nav-link">Data Berita</a>
+                    <li class="nav-item dropdown">
+                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Data Berita</a>
+                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                            <li><a href="<?= site_url('operator/Berita/ekstrakurikuler'); ?>" class="dropdown-item">Berita Esktrakurikuler</a></li>
+                            <li><a href="<?= site_url('operator/Berita/sekolah'); ?>" class="dropdown-item">Berita Sekolah</a></li>
+                        </ul>
                     </li>
                 <?php } ?>
 

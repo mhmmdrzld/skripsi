@@ -21,5 +21,7 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>dist/js/adminlte.min.js"></script>
     <script src="<?= base_url() ?>dist/login/bootstrap/js/popper.min.js"></script>
+    <!-- summernote -->
+    <script src="<?= base_url() ?>plugins/summernote/summernote-bs4.js"></script>
 
     <?php $this->load->view("_partials/plugins.php") ?>
