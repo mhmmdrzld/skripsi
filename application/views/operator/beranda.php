@@ -46,6 +46,53 @@
                                 </div>
                                 <div class="card-body konten">
 
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-info"><i class="fa fa-user-friends"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Siswa</span>
+                                                    <span class="info-box-number" id="siswa">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-success"><i class="fa fa-user-tie"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Kelas</span>
+                                                    <span class="info-box-number" id="kelas">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-warning"><i class="fa fa-university"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Jurusan</span>
+                                                    <span class="info-box-number" id="jurusan">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-danger"><i class="fa fa-user"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Ekstrakurikuler</span>
+                                                    <span class="info-box-number" id="eskul">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
 
                                 </div>
                             </div>
@@ -73,6 +120,25 @@
 
     <!-- REQUIRED SCRIPTS -->
     <?php $this->load->view("_partials/js.php") ?>
+    <script>
+        $(function() {
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('operator/Beranda/GetBerandaOperator') ?>",
+                data: {
+                    npsn: <?= $_SESSION['npsn'] ?>
+                },
+                dataType: "json",
+                success: function(result) {
+                    console.log(result)
+                    $('#siswa').empty().text(result.siswa)
+                    $('#kelas').empty().text(result.kelas)
+                    $('#jurusan').empty().text(result.jurusan)
+                    $('#eskul').empty().text(result.eskul)
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
