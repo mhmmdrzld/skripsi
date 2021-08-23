@@ -51,6 +51,24 @@
                     </li>
                 <?php } ?>
 
+                <!-- Menu Admin -->
+                <?php if ($_SESSION['level'] === 'Siswa') { ?>
+
+                    <li class="nav-item dropdown">
+                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Data Kegiatan</a>
+                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                            <li><a href="<?= site_url('siswa/Eskul'); ?>" class="dropdown-item">Data Esktrakurikuler</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Data Berita</a>
+                        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                            <li><a href="<?= site_url('operator/Berita/ekstrakurikuler'); ?>" class="dropdown-item">Berita Esktrakurikuler</a></li>
+                            <li><a href="<?= site_url('operator/Berita/sekolah'); ?>" class="dropdown-item">Berita Sekolah</a></li>
+                        </ul>
+                    </li>
+                <?php } ?>
+
                 <li class="nav-item dropdown">
                     <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
                     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
