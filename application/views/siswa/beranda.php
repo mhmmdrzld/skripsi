@@ -46,6 +46,31 @@
                                 </div>
                                 <div class="card-body konten">
 
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-info"><i class="fa fa-users"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Ekstrakurikuler</span>
+                                                    <span class="info-box-number" id="eskul">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-success"><i class="fa fa-user"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Ekstrakurikuler Saya</span>
+                                                    <span class="info-box-number" id="eskul-saya">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
 
                                 </div>
                             </div>
@@ -73,6 +98,24 @@
 
     <!-- REQUIRED SCRIPTS -->
     <?php $this->load->view("_partials/js.php") ?>
+    <script>
+        $(function() {
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('siswa/Beranda/GetBerandaSiswa') ?>",
+                data: {
+                    npsn: <?= $_SESSION['npsn'] ?>,
+                    nisn: <?= $_SESSION['username'] ?>
+                },
+                dataType: "json",
+                success: function(result) {
+                    console.log(result)
+                    $('#eskul').empty().text(result.eskul)
+                    $('#eskul-saya').empty().text(result.eskulsaya)
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
