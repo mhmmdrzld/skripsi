@@ -132,4 +132,12 @@ class M_kelas extends CI_Model
         $result = $this->db->delete($this->_table);
         return $result;
     }
+
+    function Cetak($id = NULL)
+    {
+        if ($id)
+            $this->db->where('npsn', $id);
+        $result = $this->db->get($this->_table)->result();
+        return $result;
+    }
 }
