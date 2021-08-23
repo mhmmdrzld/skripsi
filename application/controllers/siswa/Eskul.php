@@ -40,14 +40,6 @@ class Eskul extends MY_Controller
         echo json_encode($data);
     }
 
-    //==========================
-    public function insert()
-    {
-        $data = $this->input->post(null, true);
-        $result =  $this->model->insert($data);
-        echo json_encode($result);
-    }
-
     public function GetDataByID()
     {
         $postData = $this->input->get('id', true);
@@ -55,17 +47,4 @@ class Eskul extends MY_Controller
         echo json_encode($data);
     }
 
-    public function update()
-    {
-        $data = $this->input->post(null, true);
-        $result =  $this->model->update($data);
-        echo json_encode($result);
-    }
-
-    public function delete()
-    {
-        $id = $this->input->post('id', true);
-        $result = $this->model->delete($id);
-        echo json_encode($id);
-    }
 }
