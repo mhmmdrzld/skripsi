@@ -22,7 +22,8 @@ class M_beranda extends CI_Model
             from
                 anggota
             where
-                nisn ="' . $post['nisn'] . '") eskulsaya')->row();
+                nisn ="' . $post['nisn'] . '"
+                and status = "Aktif") eskulsaya')->row();
         return $query;
     }
 

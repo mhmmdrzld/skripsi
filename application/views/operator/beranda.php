@@ -121,7 +121,7 @@
     <!-- REQUIRED SCRIPTS -->
     <?php $this->load->view("_partials/js.php") ?>
     <script>
-        $(function() {
+        $(document).ready(function() {
             $.ajax({
                 type: "post",
                 url: "<?= site_url('operator/Beranda/GetBerandaOperator') ?>",
