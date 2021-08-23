@@ -208,8 +208,8 @@ class M_siswa extends CI_Model
 
     function Cetak($id = NULL)
     {
-        // if ($id)
-        //     $this->db->where('npsn', $id);
+        if ($id)
+            $this->db->where('siswa.npsn', $id);
         $this->db->select('siswa.*,jurusan.namajurusan,kelas.namakelas');
         $this->db->join('kelas', 'siswa.idkelas= kelas.id', 'left');
         $this->db->join('jurusan', 'siswa.idjurusan= jurusan.id', 'left');

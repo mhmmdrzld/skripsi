@@ -56,7 +56,7 @@ class Siswa extends MY_Controller
 
     public function Cetak()
     {
-        $data['dt'] = $this->model->Cetak();
+        $data['dt'] = $this->model->Cetak($_SESSION['npsn']);
         $this->load->library('Pdf');
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "cetak.pdf";
