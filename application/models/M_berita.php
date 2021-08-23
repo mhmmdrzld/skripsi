@@ -203,4 +203,35 @@ class M_berita extends CI_Model
 
         return $result;
     }
+
+
+    function CekStatusAnggota($post)
+    {
+        $this->db->select('count(*) stat');
+        $query = $this->db->where(array('nisn' => $post['nisn'], 'jabatan !=' => 'Anggota', 'status' => 'Aktif'))->get('anggota')->row();
+        return $query;
+    }
+
+    function CekEskulAnggota($post)
+    {
+        $this->db->select('eskul.id,eskul.namaeskul');
+        $this->db->join('eskul', 'anggota.ideskul=eskul.id', 'left');
+        $query = $this->db->where(array('nisn' => $post['nisn'], 'jabatan !=' => 'Anggota', 'status' => 'Aktif'))->get('anggota')->result();
+        return $query;
+    }
+
+    function CekAksiAnggota($post)
+    {
+        $this->db->select('count(*) count');
+        $query = $this->db->where(array('nisn' => $post['nisn'], 'jabatan !=' => 'Anggota', 'status' => 'Aktif', 'ideskul' => $post['ideskul']))->get('anggota')->row();
+        return $query;
+    }
+
+    function GetDataByIDSiswa($id)
+    {
+        $this->db->select('berita.*,eskul.namaeskul');
+        $this->db->join('eskul', 'berita.idkegiatan=eskul.id', 'left');
+        $query = $this->db->where('berita.id=', $id['id'])->get($this->_table);
+        return $query;
+    }
 }

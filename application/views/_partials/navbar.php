@@ -63,13 +63,13 @@
                     <li class="nav-item dropdown">
                         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Data Berita</a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                            <li><a href="<?= site_url('operator/Berita/ekstrakurikuler'); ?>" class="dropdown-item">Berita Esktrakurikuler</a></li>
-                            <li><a href="<?= site_url('operator/Berita/sekolah'); ?>" class="dropdown-item">Berita Sekolah</a></li>
+                            <li><a href="<?= site_url('siswa/Berita/ekstrakurikuler'); ?>" class="dropdown-item">Berita Esktrakurikuler</a></li>
+                            <li><a href="<?= site_url('siswa/Berita/sekolah'); ?>" class="dropdown-item">Berita Sekolah</a></li>
                         </ul>
                     </li>
                 <?php } ?>
 
-                
+
             </ul>
 
             <!-- SEARCH FORM -->
