@@ -53,4 +53,13 @@ class Siswa extends MY_Controller
         $result = $this->model->delete($id);
         echo json_encode($result);
     }
+
+    public function Cetak()
+    {
+        $data['dt'] = $this->model->Cetak();
+        $this->load->library('Pdf');
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "cetak.pdf";
+        $this->pdf->load_view('operator/v_cetak', $data);
+    }
 }

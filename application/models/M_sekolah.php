@@ -161,11 +161,13 @@ class M_sekolah extends CI_Model
         return $result;
     }
 
-    function CetakSekolah($id)
+    function CetakSekolah($id = NULL)
     {
         if ($id)
             $this->db->where('npsn', $id);
-        $result = $this->db->get('sekolah')->result();
+
+
+        $result = $this->db->get($this->_table)->result();
         return $result;
     }
 }
