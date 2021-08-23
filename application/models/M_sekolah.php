@@ -160,4 +160,10 @@ class M_sekolah extends CI_Model
         $result =  $this->db->update($this->_table, array('status' => 'Tidak Aktif'));
         return $result;
     }
+
+    function CetakSekolah()
+    {
+        $result = $this->db->get('sekolah')->result();
+        return $result;
+    }
 }

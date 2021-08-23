@@ -46,6 +46,7 @@
                                     <div class="ml-auto mr-3 p-2">
                                         <button type="button" id="tambah-baru" class="btn btn-primary "><i class="fas fa-plus"></i>Tambah</button>
 
+                                        <a href="<?= site_url('admin/Sekolah/CetakSekolah')?>" class="btn btn-warning" target="_blank" rel="noopener noreferrer"><i class="fas fa-print"></i>Cetak</a>
 
                                     </div>
 

@@ -53,4 +53,13 @@ class Sekolah extends MY_Controller
         $result = $this->model->delete($id);
         echo json_encode($id);
     }
+
+    public function CetakSekolah()
+    {
+        $data['dt'] = $this->model->CetakSekolah();
+        $this->load->library('Pdf');
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-data-siswa.pdf";
+        $this->pdf->load_view('admin/cetaksekolah', $data);
+    }
 }
