@@ -144,4 +144,12 @@ class M_Jurusan extends CI_Model
 
         return $result;
     }
+
+    function Cetak($id = NULL)
+    {
+        if ($id)
+            $this->db->where('npsn', $id);
+        $result = $this->db->get($this->_table)->result();
+        return $result;
+    }
 }

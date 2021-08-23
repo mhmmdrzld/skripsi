@@ -53,4 +53,13 @@ class Jurusan extends MY_Controller
         $result = $this->model->delete($id);
         echo json_encode($id);
     }
+
+    public function Cetak()
+    {
+        $data['dt'] = $this->model->Cetak($_SESSION['npsn']);
+        $this->load->library('Pdf');
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "cetak.pdf";
+        $this->pdf->load_view('operator/v_cetakjurusan', $data);
+    }
 }
