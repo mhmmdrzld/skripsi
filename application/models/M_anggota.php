@@ -167,4 +167,15 @@ class M_anggota extends CI_Model
 
         return $result;
     }
+
+    function Cetak($id = NULL)
+    {
+        if ($id)
+            $this->db->where('eskul.npsn', $id);
+        $this->db->select('anggota.*,siswa.namasiswa,eskul.namaeskul');
+        $this->db->join('eskul', 'anggota.ideskul= eskul.id', 'left');
+        $this->db->join('siswa', 'anggota.nisn= siswa.nisn', 'left');
+        $result = $this->db->get($this->_table)->result();
+        return $result;
+    }
 }

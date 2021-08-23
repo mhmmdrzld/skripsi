@@ -45,7 +45,7 @@
                                     <h5 class="card-title p-3"><?= $title ?> <b><?= $_SESSION['nama_sekolah'] ?></b></h5>
                                     <div class="ml-auto mr-3 p-2">
                                         <button type="button" id="tambah-baru" class="btn btn-primary "><i class="fas fa-plus"></i>Tambah</button>
-
+                                        <a href="<?= site_url('operator/Anggota/Cetak') ?>" class="btn btn-warning" target="_blank" rel="noopener noreferrer"><i class="fas fa-print"></i>Cetak</a>
 
                                     </div>
 
