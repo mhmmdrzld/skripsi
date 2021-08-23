@@ -38,7 +38,7 @@ class Login extends CI_Controller
 			);
 			$this->session->set_userdata($data);
 			if ($dt->level === 'Operator') {
-				$query_get = $this->model->get_data_sekolah($dt->id);
+				$query_get = $this->model->GetDataSekolah($dt->id);
 				$dt_sekolah = $query_get->row();
 				if ($dt_sekolah->status === 'Belum Verifikasi') {
 					$this->session->set_flashdata('alert', ['type' => 'warning', 'message' => 'Mohon Ditunggu Proses Verifikasi, Harap Cek Secara Berkala !!']);
@@ -58,6 +58,11 @@ class Login extends CI_Controller
 				$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
 				redirect('admin/Beranda');
 			} elseif ($dt->level === 'Siswa') {
+				$query_siswa = $this->model->GetDataSiswa($dt->id);
+				$dt_siswa = $query_siswa->row();
+				$data['npsn'] = $dt_siswa->npsn;
+				$data['nama_sekolah'] = $dt_siswa->namasekolah;
+				$this->session->set_userdata($data);
 				$this->session->set_flashdata('alert', ['type' => 'success', 'message' => 'Anda Berhasil Masuk !']);
 				redirect('siswa/Beranda');
 			} else {

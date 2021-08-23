@@ -48,11 +48,20 @@ class M_login extends CI_Model
         return  $query_insert_akun;
     }
 
-    public function get_data_sekolah($id)
+    public function GetDataSekolah($id)
     {
         $this->db->select('npsn,status,namasekolah');
         $this->db->where('idakun', $id);
         $query = $this->db->get('sekolah');
+        return $query;
+    }
+
+    public function GetDataSiswa($id)
+    {
+        $this->db->select('sekolah.npsn,sekolah.namasekolah');
+        $this->db->where('siswa.idakun', $id);
+        $this->db->join('sekolah', 'siswa.npsn= sekolah.npsn');
+        $query = $this->db->get('siswa');
         return $query;
     }
 }
