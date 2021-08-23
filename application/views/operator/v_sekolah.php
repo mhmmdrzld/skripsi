@@ -44,6 +44,10 @@
                                 <div class="card-header  d-flex p-0">
                                     <h5 class="card-title p-3"><?= $title ?> <b><?= $_SESSION['nama_sekolah'] ?></b></h5>
                                     <div class="ml-auto mr-3 p-2">
+
+
+                                        <a href="<?= site_url('operator/Sekolah/CetakSekolah') ?>" class="btn btn-warning" target="_blank" rel="noopener noreferrer"><i class="fas fa-print"></i>Cetak</a>
+
                                     </div>
 
                                 </div>

@@ -59,7 +59,7 @@ class Sekolah extends MY_Controller
         $data['dt'] = $this->model->CetakSekolah();
         $this->load->library('Pdf');
         $this->pdf->setPaper('A4', 'potrait');
-        $this->pdf->filename = "laporan-data-siswa.pdf";
+        $this->pdf->filename = "cetaksekolah.pdf";
         $this->pdf->load_view('admin/cetaksekolah', $data);
     }
 }
