@@ -144,4 +144,16 @@ class M_eskul extends CI_Model
 
         return $result;
     }
+
+    function GetDataJadwal($id)
+    {
+        $query = $this->db->where('ideskul=', $id['id'])->get('jadwal')->result();
+        return $query;
+    }
+
+    function GetJumlahAnggota($id)
+    {
+        $query = $this->db->where('ideskul=', $id['id'])->get('anggota')->num_rows();
+        return $query;
+    }
 }
