@@ -46,6 +46,42 @@
                                 </div>
                                 <div class="card-body konten">
 
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-success"><i class="fa fa-school"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Sekolah Aktif</span>
+                                                    <span class="info-box-number" id="aktif">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-info"><i class="fa fa-school"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Sekolah Belum Verifikasi</span>
+                                                    <span class="info-box-number" id="belum">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-danger"><i class="fa fa-school"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Sekolah Tidak Aktif</span>
+                                                    <span class="info-box-number" id="taktif">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    
+                                    </div>
 
                                 </div>
                             </div>
@@ -74,6 +110,21 @@
 
     <!-- REQUIRED SCRIPTS -->
     <?php $this->load->view("_partials/js.php") ?>
+    <script>
+        $(function() {
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('admin/Beranda/GetBerandaAdmin') ?>",
+                dataType: "json",
+                success: function(result) {
+                    console.log(result)
+                    $('#aktif').empty().text(result.aktif)
+                    $('#taktif').empty().text(result.taktif)
+                    $('#belum').empty().text(result.belum)
+                }
+            });
+        })
+    </script>
 </body>
 
 </html>
