@@ -158,4 +158,14 @@ class M_jadwal extends CI_Model
 
         return $result;
     }
+
+    function Cetak($id = NULL)
+    {
+        if ($id)
+            $this->db->where('eskul.npsn', $id);
+        $this->db->select('jadwal.*,eskul.namaeskul');
+        $this->db->join('eskul', 'jadwal.ideskul= eskul.id', 'left');
+        $result = $this->db->get($this->_table)->result();
+        return $result;
+    }
 }
