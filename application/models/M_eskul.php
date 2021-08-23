@@ -156,4 +156,52 @@ class M_eskul extends CI_Model
         $query = $this->db->where('ideskul=', $id['id'])->get('anggota')->num_rows();
         return $query;
     }
+
+    function GetStatusAnggota($id)
+    {
+        $this->db->select('count(*) jml,status');
+        $query = $this->db->where(array('ideskul' => $id['id'], 'nisn' => $id['nisn']))->get('anggota')->row();
+        return $query;
+    }
+
+    function GabungEskul($post)
+    {
+        $this->db->trans_begin();
+
+        $data = array(
+            'nisn' => $post['nisn'],
+            'jabatan' => 'Anggota',
+            'ideskul' => $post['ideskul'],
+            'status' => 'Belum Verifikasi'
+        );
+
+        $query = $this->db->insert('anggota', $data);
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
+        }
+
+        return $query;
+    }
+
+    function KeluarEskul($post)
+    {
+
+
+        $this->db->trans_begin();
+
+        $this->db->where(array('nisn' => $post['nisn'], 'ideskul' => $post['ideskul']));
+        $result = $this->db->delete('anggota');
+
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+        } else {
+            $this->db->trans_commit();
+        }
+
+        return $result;
+    }
 }

@@ -47,4 +47,24 @@ class Eskul extends MY_Controller
         echo json_encode($data);
     }
 
+    public function GetStatusAnggota()
+    {
+        $postData = $this->input->post(null, true);
+        $data = $this->model->GetStatusAnggota($postData);
+        echo json_encode($data);
+    }
+
+    public function GabungEskul()
+    {
+        $postData = $this->input->post(null, true);
+        $data = $this->model->GabungEskul($postData);
+        echo json_encode($data);
+    }
+
+    public function KeluarEskul()
+    {
+        $postData = $this->input->post(null, true);
+        $data = $this->model->KeluarEskul($postData);
+        echo json_encode($data);
+    }
 }

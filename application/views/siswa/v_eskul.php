@@ -81,12 +81,19 @@
                         </div>
                         <div class="modal-body ">
                             <form class="form-horizontal" id="form-input" method="POST">
+                                <div class="alert alert-info alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h5><i class="icon fas fa-info"></i> Peringatan !</h5>
+                                    <i id="modal-pesan"></i>!
+                                </div>
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Nama Ekstrakurikuler :</label>
                                         <div class="col-sm-5">
                                             <input type="text" name="namaeskul" class="form-control form-control-sm">
                                             <input type="hidden" name="id" class="form-control form-control-sm">
+                                        </div>
+                                        <div class="col-sm-2" id="btn-col">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -144,89 +151,174 @@
     <!-- REQUIRED SCRIPTS -->
     <?php $this->load->view("_partials/js.php") ?>
     <script>
-        $(function() {
-
-            const config_table = {
-                url: '<?= site_url('siswa/Eskul/GetData') ?>',
-                columns: [{
-                        data: 'no',
-                        defaultContent: ''
-                    },
-                    {
-                        data: 'namaeskul'
-                    },
-                    {
-                        data: null,
-                        render: function(row) {
-                            return '<center>' +
-                                ' <button  id="btn-lihat" class="btn btn-success" data-id="' + row.id + '" data-toggle="tooltip" data-placement="top" title="Tombol Lihat">' +
-                                ' <i class="fas fa-eye"></i>' +
-                                ' </button>' +
-                                '</center>'
-                        }
-                    }
-                ],
-                order: [
-                    [1, "asc"]
-                ],
-                columnDefs: [{
-                    targets: [0, 2],
-                    orderable: false
-                }]
-            }
-            table = ajax_table(config_table)
-
-
-            $('#tabel-data').on('click', '#btn-lihat', function() {
-                const data = {
-                    param: {
-                        id: $(this).data('id')
+        const config_table = {
+            url: '<?= site_url('siswa/Eskul/GetData') ?>',
+            columns: [{
+                    data: 'no',
+                    defaultContent: ''
+                },
+                {
+                    data: 'namaeskul'
+                },
+                {
+                    data: null,
+                    render: function(row) {
+                        return '<center>' +
+                            ' <button  id="btn-lihat" class="btn btn-success" data-id="' + row.id + '" data-toggle="tooltip" data-placement="top" title="Tombol Lihat">' +
+                            ' <i class="fas fa-eye"></i>' +
+                            ' </button>' +
+                            '</center>'
                     }
                 }
-                ajax_click(data, function data_ajax(r) {
-                    $('#btn-simpan').hide()
-                    $('input[name="namaeskul"]').val(r.namaeskul).prop('readonly', true);
-                    $('input[name="id"]').val(r.id);
-                    $('#table-jadwal').empty()
+            ],
+            order: [
+                [1, "asc"]
+            ],
+            columnDefs: [{
+                targets: [0, 2],
+                orderable: false
+            }]
+        }
+        table = ajax_table(config_table)
 
-                    $.ajax({
-                        type: "post",
-                        url: "<?= site_url('siswa/Eskul/GetJumlahAnggota') ?>",
-                        data: {
-                            id: r.id
-                        },
-                        dataType: "json",
-                        success: function(result) {
-                            $('input[name="jumlahanggota"]').val(result)
-                        }
-                    });
 
-                    $.ajax({
-                        type: 'post',
-                        url: "<?= site_url('siswa/Eskul/GetDataJadwal') ?>",
-                        data: {
-                            id: r.id
-                        },
-                        dataType: "json",
-                        success: function(res) {
-                            if (res.length !== 0) {
-                                for (i = 0; i < res.length; i++) {
-                                    $str = '<tr class="text-center">' +
-                                        '<td>' + res[i]['hari'] + '</td>' +
-                                        '<td>' + TimesFormat(res[i]['jammulai']) + ' - ' + TimesFormat(res[i]['jammulai']) + '</td>' +
-                                        '</tr>';
+        $('#tabel-data').on('click', '#btn-lihat', function() {
+            const data = {
+                param: {
+                    id: $(this).data('id')
+                }
+            }
+            ajax_click(data, function data_ajax(r) {
+                $('#btn-simpan').hide()
+                $('input[name="namaeskul"]').val(r.namaeskul).prop('readonly', true);
+                $('input[name="id"]').val(r.id);
+                $('#table-jadwal').empty()
 
-                                }
+                $.ajax({
+                    type: "post",
+                    url: "<?= site_url('siswa/Eskul/GetJumlahAnggota') ?>",
+                    data: {
+                        id: r.id
+                    },
+                    dataType: "json",
+                    success: function(result) {
+                        $('input[name="jumlahanggota"]').val(result)
+                    }
+                });
+
+                $.ajax({
+                    type: "post",
+                    url: "<?= site_url('siswa/Eskul/GetStatusAnggota') ?>",
+                    data: {
+                        id: r.id,
+                        nisn: <?= $_SESSION['username'] ?>
+                    },
+                    dataType: "json",
+                    success: function(resstat) {
+                        console.log(resstat.jml + '/' + r.id)
+                        if (resstat.jml == 0) { //artinya belum gabung
+                            $('#modal-pesan').empty().html('Anda Belum Bergabung')
+                            $('#btn-col').empty().append('<a href="#"class="btn btn-primary" id="btn-gabung">Gabung</a>')
+                            $("#btn-gabung").click(function() {
+                                Swal.fire({
+                                    title: 'Yakin Ingin Bergabung  ?',
+                                    icon: 'info',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#aaa',
+                                    confirmButtonText: 'Iya, Gabung !'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $.ajax({
+                                            type: "post",
+                                            url: "<?= site_url('siswa/Eskul/GabungEskul') ?>",
+                                            data: {
+                                                nisn: <?= $_SESSION['username'] ?>,
+                                                ideskul: r.id,
+                                            },
+                                            dataType: "Json",
+                                            success: function(td) {
+                                                swal('Status', 'Berhasil Bergabung', 'success')
+                                                location.reload();
+                                            },
+                                            error(e) {
+                                                swal('Status', 'Gagal Bergabung', 'warning')
+                                                location.reload();
+                                            }
+                                        })
+                                    }
+                                })
+                            });
+                        } else { //sudah gabung
+                            if (resstat.status == 'Aktif') {
+                                $pesan = 'Anda Sudah <b>Bergabung</b>'
+                            } else if (resstat.status == 'Belum Verifikasi') {
+                                $pesan = 'Keanggotaan Anda Masih Dalam <b>Proses Verifikasi</b>'
                             } else {
-                                $str = '<tr class="text-center"><td colspan="2">Tidak Ada Jadwal</td></tr>'
+                                $pesan = 'Keanggotaan Anda <b>Tidak Aktif</b>'
                             }
-                            $('#table-jadwal').append($str);
+                            $('#modal-pesan').empty().html($pesan)
+                            $('#btn-col').empty().append('<a href="#" class="btn btn-danger" id="btn-keluar">Keluar</a>')
+                            $("#btn-keluar").click(function() {
+                                Swal.fire({
+                                    title: 'Yakin Ingin Keluar Ekstrakurikuler  ?',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d63041',
+                                    cancelButtonColor: '#aaa',
+                                    confirmButtonText: 'Iya, Keluar !'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $.ajax({
+                                            type: "post",
+                                            url: "<?= site_url('siswa/Eskul/KeluarEskul') ?>",
+                                            data: {
+                                                nisn: <?= $_SESSION['username'] ?>,
+                                                ideskul: r.id,
+                                            },
+                                            dataType: "Json",
+                                            success: function(r) {
+                                                swal('Status', 'Berhasil Keluar', 'success')
+                                                location.reload();
+                                            },
+                                            error(e) {
+                                                swal('Status', 'Gagal Keluar', 'warning')
+                                                location.reload();
+                                            }
+                                        })
+                                    }
+                                })
+                            });
+
                         }
-                    });
-                }, "<?= site_url('siswa/Eskul/GetDataByID') ?>")
-            });
+                    }
+                });
 
 
+
+                $.ajax({
+                    type: 'post',
+                    url: "<?= site_url('siswa/Eskul/GetDataJadwal') ?>",
+                    data: {
+                        id: r.id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        if (res.length !== 0) {
+                            for (i = 0; i < res.length; i++) {
+                                $str = '<tr class="text-center">' +
+                                    '<td>' + res[i]['hari'] + '</td>' +
+                                    '<td>' + TimesFormat(res[i]['jammulai']) + ' - ' + TimesFormat(res[i]['jammulai']) + '</td>' +
+                                    '</tr>';
+
+                            }
+                        } else {
+                            $str = '<tr class="text-center"><td colspan="2">Tidak Ada Jadwal</td></tr>'
+                        }
+                        $('#table-jadwal').append($str);
+                    }
+                });
+            }, "<?= site_url('siswa/Eskul/GetDataByID') ?>")
         });
     </script>
 </body>
