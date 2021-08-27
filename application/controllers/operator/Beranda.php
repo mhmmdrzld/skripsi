@@ -21,7 +21,8 @@ class Beranda extends MY_Controller
 
     public function GetBerandaOperator()
     {
-        $data = $this->model->GetBerandaOperator();
+        $post = $this->input->post(null, true);
+        $data = $this->model->GetBerandaOperator($post);
         echo json_encode($data);
     }
 }
