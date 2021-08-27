@@ -32,12 +32,16 @@ class M_berita extends CI_Model
             ) ";
         }
 
-        if ($postData['jeniskegiatan']) {
-            $search_arr[] = ' jeniskegiatan ="' . $postData['jeniskegiatan'] . '"';
+        // if ($postData['jeniskegiatan']) {
+        $search_arr[] = ' jeniskegiatan ="' . $postData['jeniskegiatan'] . '"';
+        // }
+
+        if ($postData['jeniskegiatan'] == 'Sekolah') {
+            $search_arr[] = ' idkegiatan ="' . $postData['idkegiatan'] . '"';
         }
 
-        if ($postData['jeniskegiatan'] === 'Sekolah') {
-            $search_arr[] = ' idkegiatan ="' . $postData['idkegiatan'] . '"';
+        if ($postData['jeniskegiatan'] == 'Ekstrakurikuler') {
+            $search_arr[] = ' npsn ="' . $_SESSION['npsn'] . '"';
         }
 
         if (count($search_arr) > 0) {
@@ -49,7 +53,7 @@ class M_berita extends CI_Model
         $this->db->select('count(*) as allcount');
         if ($searchQuery != '')
             $this->db->where($searchQuery);
-        if ($postData['jeniskegiatan'] === 'Ekstrakurikuler')
+        if ($postData['jeniskegiatan'] == 'Ekstrakurikuler')
             $this->db->join('eskul', 'berita.idkegiatan=eskul.id', 'left');
         $records = $this->db->get($this->_table)->result();
         $totalRecords = $records[0]->allcount;
@@ -58,13 +62,13 @@ class M_berita extends CI_Model
         $this->db->select('count(*) as allcount');
         if ($searchQuery != '')
             $this->db->where($searchQuery);
-        if ($postData['jeniskegiatan'] === 'Ekstrakurikuler')
+        if ($postData['jeniskegiatan'] == 'Ekstrakurikuler')
             $this->db->join('eskul', 'berita.idkegiatan=eskul.id', 'left');
         $records = $this->db->get($this->_table)->result();
         $totalRecordwithFilter = $records[0]->allcount;
 
         ## Fetch records
-        if ($postData['jeniskegiatan'] === 'Ekstrakurikuler') {
+        if ($postData['jeniskegiatan'] == 'Ekstrakurikuler') {
             $select  = 'berita.*,eskul.namaeskul';
         } else {
             $select  = '*';
@@ -73,7 +77,7 @@ class M_berita extends CI_Model
         $this->db->select($select);
         if ($searchQuery != '')
             $this->db->where($searchQuery);
-        if ($postData['jeniskegiatan'] === 'Ekstrakurikuler')
+        if ($postData['jeniskegiatan'] == 'Ekstrakurikuler')
             $this->db->join('eskul', 'berita.idkegiatan=eskul.id', 'left');
         $this->db->order_by($columnName, $columnSortOrder);
         $this->db->limit($rowperpage, $start);
@@ -82,7 +86,7 @@ class M_berita extends CI_Model
         $data = array();
 
         foreach ($records as $record) {
-            if ($postData['jeniskegiatan'] === 'Ekstrakurikuler') {
+            if ($postData['jeniskegiatan'] == 'Ekstrakurikuler') {
                 $data[] = array(
                     "id" => $record->id,
                     "judulberita" => $record->judulberita,
@@ -138,7 +142,7 @@ class M_berita extends CI_Model
 
         $query = $this->db->insert($this->_table, $data);
 
-        if ($this->db->trans_status() === FALSE) {
+        if ($this->db->trans_status() == FALSE) {
             $this->db->trans_rollback();
         } else {
             $this->db->trans_commit();
@@ -176,7 +180,7 @@ class M_berita extends CI_Model
         $this->db->where('id',  $post['id']);
         $query = $this->db->update($this->_table, $data);
 
-        if ($this->db->trans_status() === FALSE) {
+        if ($this->db->trans_status() == FALSE) {
             $this->db->trans_rollback();
         } else {
             $this->db->trans_commit();
@@ -195,7 +199,7 @@ class M_berita extends CI_Model
         $result = $this->db->delete($this->_table);
 
 
-        if ($this->db->trans_status() === FALSE) {
+        if ($this->db->trans_status() == FALSE) {
             $this->db->trans_rollback();
         } else {
             $this->db->trans_commit();
