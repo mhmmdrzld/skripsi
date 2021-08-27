@@ -33,9 +33,7 @@ class M_anggota extends CI_Model
             ) ";
         }
 
-        // if ($postData['npsn']) {
-        //     $search_arr[] = " anggota.npsn = '" . $postData['npsn'] . "'";
-        // }
+        $search_arr[] = " siswa.npsn = '" . $_SESSION['npsn'] . "'";
 
         if (count($search_arr) > 0) {
             $searchQuery = implode(" and ", $search_arr);

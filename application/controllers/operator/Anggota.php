@@ -22,7 +22,7 @@ class Anggota extends MY_Controller
     public function GetData()
     {
         $post = $this->input->post(NULL, true);
-        $data = $this->model->GetData($post, $_SESSION['npsn']);
+        $data = $this->model->GetData($post);
         echo json_encode($data);
     }
 
