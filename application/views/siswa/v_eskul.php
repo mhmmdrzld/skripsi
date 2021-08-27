@@ -102,8 +102,6 @@
                                             <input type="text" name="jumlahanggota" class="form-control form-control-sm" readonly>
                                         </div>
                                     </div>
-
-
                                     <div>
                                         <label class="col-sm-3 col-form-label">Jadwal :</label>
                                         <table class="table table-bordered">
@@ -114,6 +112,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="table-jadwal">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div>
+                                        <label class="col-sm-3 col-form-label">Prestasi :</label>
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>Nama Prestasi</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Tingkat</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="table-prestasi">
 
                                             </tbody>
                                         </table>
@@ -294,8 +307,6 @@
                     }
                 });
 
-
-
                 $.ajax({
                     type: 'post',
                     url: "<?= site_url('siswa/Eskul/GetDataJadwal') ?>",
@@ -316,6 +327,30 @@
                             $str = '<tr class="text-center"><td colspan="2">Tidak Ada Jadwal</td></tr>'
                         }
                         $('#table-jadwal').append($str);
+                    }
+                });
+
+                $.ajax({
+                    type: 'post',
+                    url: "<?= site_url('siswa/Eskul/GetDataPrestasi') ?>",
+                    data: {
+                        id: r.id
+                    },
+                    dataType: "json",
+                    success: function(res) {
+                        if (res.length !== 0) {
+                            for (i = 0; i < res.length; i++) {
+                                $str = '<tr class="text-center">' +
+                                    '<td>' + res[i]['namaprestasi'] + '</td>' +
+                                    '<td>' + Tanggal(res[i]['tanggal']) + '</td>' +
+                                    '<td>' + res[i]['tingkat'] + '</td>' +
+                                    '</tr>';
+
+                            }
+                        } else {
+                            $str = '<tr class="text-center"><td colspan="2">Tidak Ada Jadwal</td></tr>'
+                        }
+                        $('#table-prestasi').append($str);
                     }
                 });
             }, "<?= site_url('siswa/Eskul/GetDataByID') ?>")

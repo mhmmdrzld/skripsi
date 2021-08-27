@@ -212,4 +212,10 @@ class M_eskul extends CI_Model
         $result = $this->db->get($this->_table)->result();
         return $result;
     }
+
+    function GetDataPrestasi($id)
+    {
+        $query = $this->db->where('ideskul=', $id['id'])->get('prestasi')->result();
+        return $query;
+    }
 }

@@ -67,4 +67,11 @@ class Eskul extends MY_Controller
         $data = $this->model->KeluarEskul($postData);
         echo json_encode($data);
     }
+
+    public function GetDataPrestasi()
+    {
+        $post = $this->input->post(NULL, true);
+        $data = $this->model->GetDataPrestasi($post);
+        echo json_encode($data);
+    }
 }
