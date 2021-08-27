@@ -122,6 +122,17 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Bukti Akreditasi :</label>
+                                        <div class="col-sm-5">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="files" name="bukti">
+                                                <input type="hidden" name="bukti_lama">
+                                                <label class="custom-file-label" for="exampleInputFile">Pilih Berkas</label>
+                                            </div>
+                                            <a href="" id="lihat-bukti" target="_blank" rel="noopener noreferrer"></a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email :</label>
                                         <div class="col-sm-5">
                                             <input type="email" name="email" class="form-control form-control-sm">
@@ -173,6 +184,7 @@
     <?php $this->load->view("_partials/js.php") ?>
     <script>
         $(function() {
+            bsCustomFileInput.init();
             const config_table = {
                 url: '<?= site_url('operator/Sekolah/GetSekolah') ?>',
                 columns: [{
@@ -242,7 +254,12 @@
             valid(config_valid)
 
             $('#btn-simpan').click(function() {
-                simpan_data()
+                if (!$('input[name="bukti_lama"]').val()) {
+                    $('input[name="bukti"]').prop('required', true)
+                } else {
+                    $('input[name="bukti"]').prop('required', false)
+                }
+                SimpanData()
             });
 
             $('#tabel-data').on('click', '#btn-ubah', function() {
@@ -263,16 +280,9 @@
                     $('input[name="status"]').val(r.status);
                     $('input[name="password"]').val(r.password);
                     $('input[name="password_lama"]').val(r.password);
+                    $('#lihat-bukti').show().prop('href', "<?= base_url('file/') ?>" + r.buktiakreditasi).text('lihat bukti')
+                    $('input[name="bukti_lama"]').val(r.buktiakreditasi);
                 }, "<?= site_url('operator/Sekolah/GetSekolahByID') ?>", "<?= site_url('operator/Sekolah/update') ?>")
-            });
-
-            $('#tabel-data').on('click', '#btn-hapus', function() {
-                const data = {
-                    param: {
-                        id: $(this).data('id')
-                    }
-                }
-                hapus_data("<?= site_url('operator/Sekolah/delete') ?>", data)
             });
 
 
