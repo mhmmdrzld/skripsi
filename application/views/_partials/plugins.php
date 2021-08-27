@@ -121,6 +121,45 @@
         }
     }
 
+    function SimpanData() {
+
+
+
+        var form = $('#form-input');
+        var formData = false;
+
+        if (window.FormData) {
+            formData = new FormData($('#form-input')[0]);
+        }
+
+        $('#modaloverlay2').show();
+
+        if ($("#form-input").valid()) {
+            $.ajax({
+                type: $('#form-input').prop('method'),
+                url: $('#form-input').prop('action'),
+                processData: false,
+                contentType: false,
+                data: formData ? formData : form.serialize(),
+                // dataType: 'json',
+                success(r) {
+                    console.log(r)
+                    swal('Status', 'Berhasil', 'success')
+                    $('#modaloverlay2').hide();
+                    location.reload();
+                },
+                error(e) {
+                    swal('Status', 'Gagal Disimpan', 'warning')
+                    $('#modaloverlay2').hide();
+                    location.reload();
+                }
+            });
+        } else {
+            swal('Status', 'Form Harus Dilengkapi', 'warning')
+            $('#modaloverlay2').hide();
+        }
+    }
+
 
     function ajax_table(param) {
         const table = $('#tabel-data').DataTable({

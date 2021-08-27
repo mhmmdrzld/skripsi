@@ -85,6 +85,20 @@ class M_sekolah extends CI_Model
     {
         $this->db->trans_begin();
 
+        $config = array(
+            'upload_path' => './file/',
+            'allowed_types' => 'jpg|png|jpeg|pdf'
+
+        );
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('bukti')) {
+        } else {
+            $result = $this->upload->data();
+            $file_dokumen = $result['file_name'];
+        }
+
         $data_akun = array(
             'username' => $post['npsn'],
             'password' => md5($post['password']),
@@ -102,7 +116,8 @@ class M_sekolah extends CI_Model
                 'akreditasi' => $post['akreditasi'],
                 'email' => $post['email'],
                 'status' => 'Belum Verifikasi',
-                'idakun' => $idakun
+                'idakun' => $idakun,
+                'buktiakreditasi' => $file_dokumen
             );
 
             $this->db->insert($this->_table, $data_sekolah);
@@ -126,6 +141,22 @@ class M_sekolah extends CI_Model
     {
         $this->db->trans_begin();
 
+        $config = array(
+            'upload_path' => './file/',
+            'allowed_types' => 'jpg|png|jpeg|pdf'
+
+        );
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('bukti')) {
+            $file_dokumen = $post['bukti_lama'];
+        } else {
+            $result = $this->upload->data();
+            $file_dokumen = $result['file_name'];
+        }
+
+
         $data_akun = array(
             'password' => md5($post['password']),
         );
@@ -141,7 +172,8 @@ class M_sekolah extends CI_Model
             'alamatsekolah' => $post['alamatsekolah'],
             'akreditasi' => $post['akreditasi'],
             'email' => $post['email'],
-            'status' => $post['status']
+            'status' => $post['status'],
+            'buktiakreditasi' => $file_dokumen
         );
 
         $this->db->where('npsn',  $post['npsn']);

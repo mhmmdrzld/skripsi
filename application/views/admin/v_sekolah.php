@@ -46,7 +46,7 @@
                                     <div class="ml-auto mr-3 p-2">
                                         <button type="button" id="tambah-baru" class="btn btn-primary "><i class="fas fa-plus"></i>Tambah</button>
 
-                                        <a href="<?= site_url('admin/Sekolah/CetakSekolah')?>" class="btn btn-warning" target="_blank" rel="noopener noreferrer"><i class="fas fa-print"></i>Cetak</a>
+                                        <a href="<?= site_url('admin/Sekolah/CetakSekolah') ?>" class="btn btn-warning" target="_blank" rel="noopener noreferrer"><i class="fas fa-print"></i>Cetak</a>
 
                                     </div>
 
@@ -95,6 +95,7 @@
     <?php $this->load->view("_partials/js.php") ?>
     <script>
         $(function() {
+            bsCustomFileInput.init();
 
             table = $('#tabel-data').DataTable({
                 "lengthMenu": [
@@ -162,6 +163,7 @@
                 $('input[name="npsn"]').prop('readonly', false)
                 $('#form-input').trigger("reset");
                 $('#form-input select').val(null).trigger("change");
+                $('#lihat-bukti').hide()
                 $('#form-input').prop('action', "<?= site_url('admin/Sekolah/insert') ?>")
                 $('#modaloverlay2').hide();
             });
@@ -196,7 +198,13 @@
             valid(config_valid)
 
             $('#btn-simpan').click(function() {
-                simpan_data()
+                if (!$('input[name="bukti_lama"]').val()) {
+                    $('input[name="bukti"]').prop('required', true)
+                } else {
+                    $('input[name="bukti"]').prop('required', false)
+                }
+
+                SimpanData()
             });
 
             $('#tabel-data').on('click', '#btn-ubah', function() {
@@ -208,6 +216,7 @@
                 }
                 ajax_click(data, function data_ajax(r) {
                     $('input[name="npsn"]').val(r.npsn);
+                    $('#lihat-bukti').show().prop('href', "<?= base_url('file/') ?>" + r.buktiakreditasi).text('lihat bukti')
                     $('input[name="idakun"]').val(r.idakun);
                     $('input[name="namasekolah"]').val(r.namasekolah);
                     $('textarea[name="alamatsekolah"]').val(r.alamatsekolah);
@@ -215,6 +224,7 @@
                     $('input[name="email"]').val(r.email);
                     $('select[name="status"]').val(r.status).trigger('change');
                     $('input[name="password"]').val(r.password);
+                    $('input[name="bukti_lama"]').val(r.buktiakreditasi);
                     $('input[name="password_lama"]').val(r.password);
                 }, "<?= site_url('admin/Sekolah/GetSekolahByID') ?>", "<?= site_url('admin/Sekolah/update') ?>")
             });

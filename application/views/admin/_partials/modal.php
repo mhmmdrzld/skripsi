@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="modal-body ">
-                <form class="form-horizontal" id="form-input" method="POST">
+                <form class="form-horizontal" id="form-input" method="POST" enctype="multipart/form-data">
                     <div class="alert alert-info alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h5><i class="icon fas fa-info"></i> Peringatan !</h5>
@@ -41,6 +41,17 @@
                             <label class="col-sm-3 col-form-label">Akreditasi :</label>
                             <div class="col-sm-5">
                                 <input type="text" name="akreditasi" class="form-control form-control-sm upper">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Bukti Akreditasi :</label>
+                            <div class="col-sm-5">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="files" name="bukti">
+                                    <input type="hidden" name="bukti_lama">
+                                    <label class="custom-file-label" for="exampleInputFile">Pilih Berkas</label>
+                                </div>
+                                <a href="" id="lihat-bukti" target="_blank" rel="noopener noreferrer"></a>
                             </div>
                         </div>
                         <div class="form-group row">
