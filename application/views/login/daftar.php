@@ -25,9 +25,9 @@
             <div class="card-body">
                 <p class="login-box-msg">APLIKASI PENGELOLAAN KEGIATAN KURIKULER DAN EKSTRAKURIKULER SEKOLAH MENENGAH ATAS (SMA) DI TANAH LAUT</p>
 
-                <form action="<?= base_url('Login/proses_daftar') ?>" method="post">
+                <form action="<?= base_url('Login/proses_daftar') ?>" method="post" enctype="multipart/form-data">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="npsn" placeholder="NPSN">
+                        <input type="text" class="form-control" name="npsn" placeholder="NPSN" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-id-card"></span>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" name="namasekolah" class="form-control" placeholder="Nama Sekolah">
+                        <input type="text" name="namasekolah" class="form-control" placeholder="Nama Sekolah" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-graduation-cap"></span>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <textarea name="alamatsekolah" class="form-control" id="" cols="30" rows="5">Alamat Sekolah</textarea>
+                        <textarea name="alamatsekolah" class="form-control" id="" cols="30" rows="5" required>Alamat Sekolah</textarea>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-map-marker-alt"></span>
@@ -51,15 +51,28 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" name="akreditasi" class="form-control" placeholder="Akreditasi">
+                        <input type="text" name="akreditasi" class="form-control" placeholder="Akreditasi" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-font"></span>
                             </div>
                         </div>
                     </div>
+                    * format file jpg|png|jpeg|pdf
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="E-mail">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="bukti" required>
+                            <label class="custom-file-label" for="exampleInputFile">Pilih Berkas</label>
+                        </div>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-upload"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text   " name="email" class="form-control" placeholder="E-mail" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -67,7 +80,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Kata Sandi">
+                        <input type="password" name="password" class="form-control" placeholder="Kata Sandi" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -100,6 +113,10 @@
     <script src="<?= base_url() ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>dist/js/adminlte.min.js"></script>
+    <script src="<?= base_url() ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <script>
+        bsCustomFileInput.init();
+    </script>
 </body>
 
 </html>

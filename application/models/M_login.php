@@ -13,8 +13,22 @@ class M_login extends CI_Model
 
     public function proses_daftar($post)
     {
-
         $this->db->trans_begin();
+
+
+        $config = array(
+            'upload_path' => './file/',
+            'allowed_types' => 'jpg|png|jpeg|pdf'
+
+        );
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('bukti')) {
+        } else {
+            $result = $this->upload->data();
+            $file_dokumen = $result['file_name'];
+        }
 
         $data_akun = array(
             'username' => $post['npsn'],
@@ -33,7 +47,8 @@ class M_login extends CI_Model
                 'akreditasi' => $post['akreditasi'],
                 'email' => $post['email'],
                 'status' => 'Belum Verifikasi',
-                'idakun' => $idakun
+                'idakun' => $idakun,
+                'buktiakreditasi' =>  $file_dokumen
             );
 
             $this->db->insert('sekolah', $data_sekolah);

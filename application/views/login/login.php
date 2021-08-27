@@ -30,7 +30,7 @@
 
                 <form action="<?= site_url('Login/proses_login') ?>" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" placeholder="Nama Pengguna">
+                        <input type="text" class="form-control" name="username" placeholder="Nama Pengguna" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="password" placeholder="Kata Sandi">
+                        <input type="password" class="form-control" name="password" placeholder="Kata Sandi" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
