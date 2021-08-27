@@ -40,6 +40,7 @@
                             <li><a href="<?= site_url('operator/Eskul'); ?>" class="dropdown-item">Data Esktrakurikuler</a></li>
                             <li><a href="<?= site_url('operator/Anggota'); ?>" class="dropdown-item">Data Anggota</a></li>
                             <li><a href="<?= site_url('operator/Jadwal'); ?>" class="dropdown-item">Data Jadwal</a></li>
+                            <li><a href="<?= site_url('operator/Prestasi'); ?>" class="dropdown-item">Data Prestasi</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
