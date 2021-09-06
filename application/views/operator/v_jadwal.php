@@ -56,7 +56,7 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>ID Jadwal</th>
+                                                <!-- <th>ID Jadwal</th> -->
                                                 <th>Hari / Waktu</th>
                                                 <th>Nama Ekstrakurikuler</th>
                                                 <th>Aksi</th>
@@ -164,9 +164,6 @@
                 method: "post",
                 async: false,
                 dataType: 'json',
-                data: {
-                    id: "<?= $_SESSION['npsn'] ?>"
-                },
                 success: function(data) {
                     var html = '';
                     for (var i = 0; i < data.length; i++) {
@@ -183,9 +180,9 @@
                         data: 'no',
                         defaultContent: ''
                     },
-                    {
-                        data: 'id'
-                    },
+                    // {
+                    //     data: 'id'
+                    // },
                     {
                         data: null,
                         render: function(row) {
@@ -208,10 +205,10 @@
                     }
                 ],
                 order: [
-                    [1, "desc"]
+                    [2, "desc"]
                 ],
                 columnDefs: [{
-                    targets: [0, 4],
+                    targets: [0, 3],
                     orderable: false
                 }]
             }
