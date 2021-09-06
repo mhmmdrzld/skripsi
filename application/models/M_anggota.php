@@ -42,6 +42,8 @@ class M_anggota extends CI_Model
 
         ## Total number of records without filtering
         $this->db->select('count(*) as allcount');
+        if ($searchQuery != '')
+            $this->db->where($searchQuery);
         $this->db->join('eskul', 'anggota.ideskul=eskul.id', 'left');
         $this->db->join('siswa', 'anggota.nisn=siswa.nisn', 'left');
         $records = $this->db->get($this->_table)->result();
@@ -169,7 +171,7 @@ class M_anggota extends CI_Model
     function Cetak($id = NULL)
     {
         if ($id)
-            $this->db->where('eskul.npsn', $id);
+            $this->db->where('siswa.npsn', $id);
         $this->db->select('anggota.*,siswa.namasiswa,eskul.namaeskul');
         $this->db->join('eskul', 'anggota.ideskul= eskul.id', 'left');
         $this->db->join('siswa', 'anggota.nisn= siswa.nisn', 'left');

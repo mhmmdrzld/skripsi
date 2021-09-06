@@ -176,9 +176,6 @@
                 method: "post",
                 async: false,
                 dataType: 'json',
-                data: {
-                    id: "<?= $_SESSION['npsn'] ?>"
-                },
                 success: function(data) {
                     var html = '';
                     for (var i = 0; i < data.length; i++) {
