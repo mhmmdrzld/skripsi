@@ -21,6 +21,9 @@
                     <li class="nav-item">
                         <a href="<?= site_url('admin/Sekolah'); ?>" class="nav-link">Data Sekolah</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= site_url('admin/Eskul'); ?>" class="nav-link">Data Esktrakurikuler</a>
+                    </li>
                 <?php } ?>
 
                 <!-- Menu Operator -->

@@ -29,9 +29,6 @@ class M_eskul extends CI_Model
             namaeskul like '%" . $searchValue . "%') ";
         }
 
-        if ($npsn) {
-            $search_arr[] = " npsn = '$npsn'";
-        }
 
         if (count($search_arr) > 0) {
             $searchQuery = implode(" and ", $search_arr);
@@ -84,8 +81,7 @@ class M_eskul extends CI_Model
         $this->db->trans_begin();
 
         $data = array(
-            'namaeskul' => $post['namaeskul'],
-            'npsn' => $_SESSION['npsn']
+            'namaeskul' => $post['namaeskul']
         );
 
         $query = $this->db->insert($this->_table, $data);
