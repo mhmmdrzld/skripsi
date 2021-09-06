@@ -52,13 +52,14 @@ class M_beranda extends CI_Model
                 jurusan
             where
                 npsn = "' . $post['npsn'] . '") jurusan,
-            (
-            select
-                count(*)
+            (select
+            count(distinct ideskul)
             from
-                eskul
+                anggota a
+            join siswa s on
+                a.nisn = s.nisn
             where
-                npsn = "' . $post['npsn'] . '") eskul')->row();
+            s.npsn = "' . $post['npsn'] . '") eskul')->row();
         return $query;
     }
 
