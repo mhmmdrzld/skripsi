@@ -77,6 +77,34 @@
                         </div>
                     </div>
 
+                    <div class="row" id="list-berita">
+                        <?php foreach ($data as $data) :
+                        ?>
+                            <div class="col-md-12">
+                                <div class="card card-widget">
+                                    <div class="card-header">
+                                        <div class="user-block">
+                                            <img class="img-circle" src="<?= base_url(); ?>dist/img/news.png" alt="User Image">
+                                            <span class="username"><a href="#"><?= $data->judulberita ?></a> <span class="badge badge-secondary"><?= $data->jeniskegiatan ?></span></span>
+                                            <span class="description"><?= $data->tanggalberita ?></span>
+                                        </div>
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" title="Mark as read">
+                                                <i class="far fa-circle"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body summernote" data-id="<?= $data->id ?>">
+                                        <?= $data->isiberita ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
 
                 </div>
             </div>
@@ -100,6 +128,17 @@
     <?php $this->load->view("_partials/js.php") ?>
     <script>
         $(function() {
+
+            // $('.summernote').each(function(i, obj) {
+            //     $(obj).summernote({
+            //         onblur: function(e) {
+            //             var id = $(obj).data('id');
+            //             var sHTML = $(obj).code();
+            //             alert(sHTML);
+            //         }
+            //     });
+            // });
+
             $.ajax({
                 type: "post",
                 url: "<?= site_url('siswa/Beranda/GetBerandaSiswa') ?>",
@@ -114,6 +153,30 @@
                     $('#eskul-saya').empty().text(result.eskulsaya)
                 }
             });
+
+            // $.ajax({
+            //     type: "post",
+            //     url: "<?= site_url('siswa/Beranda/GetBerita') ?>",
+            //     data: {
+            //         npsn: <?= $_SESSION['npsn'] ?>
+            //     },
+            //     dataType: "json",
+            //     success: function(result) {
+            //         console.log(result.length)
+            //         if (result) {
+            //             for (i = 0; i < result.length; i++) {
+            //                 $str = '<tr id="total">' +
+            //                     '<th colspan="2" class="text-center">Total</th>' +
+            //                     '<th>' + resdok[i]['kredit'] + '</th>' +
+            //                     '<th>' + resdok[i]['debit'] + '</th>' +
+            //                     '<th>' + resdok[i]['saldo'] + '</th>' +
+            //                     '</tr>';
+            //                 $('#list-berita').append($str);
+            //             }
+
+            //         }
+            //     }
+            // });
         })
     </script>
 </body>
