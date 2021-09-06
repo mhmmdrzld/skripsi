@@ -20,7 +20,7 @@
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0"> <?= $title ?> <b><?= $_SESSION['nama_sekolah'] ?></b></h1>
+                            <h1 class="m-0"> <?= $title ?> </h1>
                         </div>
                         <!-- /.col -->
 
@@ -42,7 +42,7 @@
                         <div class="col-lg-12">
                             <div class="card card-primary card-outline">
                                 <div class="card-header  d-flex p-0">
-                                    <h5 class="card-title p-3"><?= $title ?> <b><?= $_SESSION['nama_sekolah'] ?></b></h5>
+                                    <h5 class="card-title p-3"><?= $title ?> </h5>
                                     <div class="ml-auto mr-3 p-2">
                                         <button type="button" id="tambah-baru" class="btn btn-primary "><i class="fas fa-plus"></i>Tambah</button>
 
@@ -56,7 +56,7 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>ID Ekstrakurikuler</th>
+                                                <!-- <th>ID Ekstrakurikuler</th> -->
                                                 <th>Nama Ekstrakurikuler</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -80,7 +80,7 @@
                             <i class="fas fa-2x fa-sync fa-spin"></i>
                         </div>
                         <div class="modal-header">
-                            <h4 class="modal-title"><?= $title ?> <b><?= $_SESSION['nama_sekolah'] ?></b></h4>
+                            <h4 class="modal-title"><?= $title ?> </h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -135,9 +135,9 @@
                         data: 'no',
                         defaultContent: ''
                     },
-                    {
-                        data: 'id'
-                    },
+                    // {
+                    //     data: 'id'
+                    // },
                     {
                         data: 'namaeskul'
                     },
@@ -147,17 +147,15 @@
                             return '<center><button id="btn-ubah" class="btn btn-primary" data-id="' + row.id + '" data-toggle="tooltip" data-placement="top" title="Tombol Ubah">' +
                                 ' <i class="fas fa-edit"></i>' +
                                 ' </button>' +
-                                ' <button  id="btn-hapus" class="btn btn-danger" data-id="' + row.id + '" data-toggle="tooltip" data-placement="top" title="Tombol Hapus">' +
-                                ' <i class="fas fa-trash"></i>' +
-                                ' </button></center>'
+                                '</center>'
                         }
                     }
                 ],
                 order: [
-                    [2, "asc"]
+                    [1, "asc"]
                 ],
                 columnDefs: [{
-                    targets: [0, 3],
+                    targets: [0, 2],
                     orderable: false
                 }]
             }

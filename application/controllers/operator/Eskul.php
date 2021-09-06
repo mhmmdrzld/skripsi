@@ -40,23 +40,23 @@ class Eskul extends MY_Controller
         echo json_encode($data);
     }
 
-    public function update()
-    {
-        $data = $this->input->post(null, true);
-        $result =  $this->model->update($data);
-        echo json_encode($result);
-    }
+    // public function update()
+    // {
+    //     $data = $this->input->post(null, true);
+    //     $result =  $this->model->update($data);
+    //     echo json_encode($result);
+    // }
 
-    public function delete()
-    {
-        $id = $this->input->post('id', true);
-        $result = $this->model->delete($id);
-        echo json_encode($id);
-    }
+    // public function delete()
+    // {
+    //     $id = $this->input->post('id', true);
+    //     $result = $this->model->delete($id);
+    //     echo json_encode($id);
+    // }
 
     public function Cetak()
     {
-        $data['dt'] = $this->model->Cetak($_SESSION['npsn']);
+        $data['dt'] = $this->model->Cetak();
         $this->load->library('Pdf');
         $this->pdf->setPaper('A4', 'potrait');
         $this->pdf->filename = "cetak.pdf";
