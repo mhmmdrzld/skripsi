@@ -45,6 +45,8 @@ class M_prestasi extends CI_Model
 
         ## Total number of records without filtering
         $this->db->select('count(*) as allcount');
+        if ($searchQuery != '')
+            $this->db->where($searchQuery);
         $this->db->join('eskul', 'prestasi.ideskul=eskul.id', 'left');
         $records = $this->db->get($this->_table)->result();
         $totalRecords = $records[0]->allcount;
@@ -101,6 +103,7 @@ class M_prestasi extends CI_Model
             'tingkat' => $post['tingkat'],
             'ideskul' => $post['ideskul'],
             'keterangan' => $post['keterangan'],
+            'npsn' => $_SESSION['npsn'],
         );
 
         $query = $this->db->insert($this->_table, $data);
@@ -167,7 +170,7 @@ class M_prestasi extends CI_Model
     function Cetak($id = NULL)
     {
         if ($id)
-            $this->db->where('eskul.npsn', $id);
+            $this->db->where('prestasi.npsn', $id);
         $this->db->select('prestasi.*,eskul.namaeskul');
         $this->db->join('eskul', 'prestasi.ideskul= eskul.id', 'left');
         $result = $this->db->get($this->_table)->result();
