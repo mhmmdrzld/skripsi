@@ -41,6 +41,8 @@ class M_sekolah extends CI_Model
 
         ## Total number of records without filtering
         $this->db->select('count(*) as allcount');
+        if ($searchQuery != '')
+            $this->db->where($searchQuery);
         $records = $this->db->get($this->_table)->result();
         $totalRecords = $records[0]->allcount;
 

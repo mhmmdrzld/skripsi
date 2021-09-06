@@ -47,8 +47,10 @@ class M_siswa extends CI_Model
 
         ## Total number of records without filtering
         $this->db->select('count(*) as allcount');
+        if ($searchQuery != '')
+            $this->db->where($searchQuery);
         $this->db->join('kelas', 'siswa.idkelas=kelas.id', 'left');
-        $this->db->join('jurusan', 'siswa.idjurusan=kelas.id', 'left');
+        $this->db->join('jurusan', 'siswa.idjurusan=jurusan.id', 'left');
         $records = $this->db->get($this->_table)->result();
         $totalRecords = $records[0]->allcount;
 
@@ -57,7 +59,7 @@ class M_siswa extends CI_Model
         if ($searchQuery != '')
             $this->db->where($searchQuery);
         $this->db->join('kelas', 'siswa.idkelas=kelas.id', 'left');
-        $this->db->join('jurusan', 'siswa.idjurusan=kelas.id', 'left');
+        $this->db->join('jurusan', 'siswa.idjurusan=jurusan.id', 'left');
         $records = $this->db->get($this->_table)->result();
         $totalRecordwithFilter = $records[0]->allcount;
 
