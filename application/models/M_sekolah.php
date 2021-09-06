@@ -115,7 +115,7 @@ class M_sekolah extends CI_Model
                 'alamatsekolah' => $post['alamatsekolah'],
                 'akreditasi' => $post['akreditasi'],
                 'email' => $post['email'],
-                'status' => 'Belum Verifikasi',
+                'status' => $post['status'],
                 'idakun' => $idakun,
                 'buktiakreditasi' => $file_dokumen
             );
