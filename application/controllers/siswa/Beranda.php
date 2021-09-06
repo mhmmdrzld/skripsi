@@ -16,6 +16,9 @@ class Beranda extends MY_Controller
     public function index()
     {
         $data['title'] = "Beranda";
+
+        $data['data'] = $this->model->GetBerita($_SESSION['npsn']);
+
         $this->load->view('siswa/beranda', $data);
     }
 
@@ -23,6 +26,13 @@ class Beranda extends MY_Controller
     {
         $post = $this->input->post(NULL, true);
         $data = $this->model->GetBerandaSiswa($post);
+        echo json_encode($data);
+    }
+
+    public function GetBerita()
+    {
+        $post = $this->input->post('npsn', true);
+        $data = $this->model->GetBerita($post);
         echo json_encode($data);
     }
 }

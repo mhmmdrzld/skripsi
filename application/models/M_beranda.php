@@ -89,4 +89,31 @@ class M_beranda extends CI_Model
                 status = "Belum Verifikasi") belum')->row();
         return $query;
     }
+
+    public function GetBerita($id)
+    {
+        return $this->db->query('
+        select
+	*
+from
+	BERITA
+where
+	IDKEGIATAN in (
+	select
+		id
+	from
+		ESKUL E
+	where
+		npsn = "' . $id . '"
+union
+	select
+    "' . $id . '")
+  
+
+order by tanggalberita desc
+
+limit 6
+
+        ')->result();
+    }
 }
