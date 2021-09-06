@@ -125,7 +125,8 @@ class M_berita extends CI_Model
                 'isiberita' => $post['isiberita'],
                 'idkegiatan' => $post['idkegiatan'],
                 'jeniskegiatan' => $post['jeniskegiatan'],
-                'idkegiatan' => $post['ideskul']
+                'idkegiatan' => $post['ideskul'],
+                'npsn' => $_SESSION['npsn']
 
             );
         } else {
@@ -135,7 +136,7 @@ class M_berita extends CI_Model
                 'isiberita' => $post['isiberita'],
                 'idkegiatan' => $post['idkegiatan'],
                 'jeniskegiatan' => $post['jeniskegiatan'],
-
+                'npsn' => $_SESSION['npsn']
             );
         }
 
