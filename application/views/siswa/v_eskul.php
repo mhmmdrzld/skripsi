@@ -206,6 +206,7 @@
                 $('input[name="namaeskul"]').val(r.namaeskul).prop('readonly', true);
                 $('input[name="id"]').val(r.id);
                 $('#table-jadwal').empty()
+                $('#table-prestasi').empty()
 
                 $.ajax({
                     type: "post",

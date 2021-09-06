@@ -10,12 +10,14 @@ class M_beranda extends CI_Model
         $query = $this->db->query('
         select
             (
-            select
-                count(*)
-            from
-                eskul
-            where
-                npsn = "' . $post['npsn'] . '") eskul,
+                select
+                count(distinct ideskul)
+                from
+                    anggota a
+                join siswa s on
+                    a.nisn = s.nisn
+                where
+                s.npsn = "' . $post['npsn'] . '") eskul,
             (
             select
                 count(*)
