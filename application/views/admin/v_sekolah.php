@@ -61,6 +61,7 @@
                                                 <th>Nama Sekolah</th>
                                                 <th>Status</th>
                                                 <th>Aksi</th>
+                                                <th>Kelola</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -75,6 +76,7 @@
                 </div>
             </div>
             <!-- /.content -->
+
         </div>
         <!-- /.content-wrapper -->
 
@@ -137,12 +139,41 @@
                     {
                         data: null,
                         render: function(row) {
-                            return '<center><button id="btn-ubah" class="btn btn-primary" data-id="' + row.npsn + '" data-toggle="tooltip" data-placement="top" title="Tombol Ubah">' +
+                            return '<center>' +
+                                '<button id="btn-ubah" class="btn btn-primary" data-id="' + row.npsn + '" data-toggle="tooltip" data-placement="top" title="Tombol Ubah">' +
                                 ' <i class="fas fa-edit"></i>' +
                                 ' </button>' +
                                 ' <button  id="btn-hapus" class="btn btn-danger" data-id="' + row.npsn + '" data-toggle="tooltip" data-placement="top" title="Tombol Hapus">' +
                                 ' <i class="fas fa-trash"></i>' +
-                                ' </button></center>'
+                                ' </button>' +
+                                '</center>'
+                        }
+                    },
+                    {
+                        data: null,
+                        render: function(row) {
+                            return '<center>' +
+                                '<div class="btn-group ml-1">' +
+                                ' <button class="btn btn-secondary btn-sm" type="button">' +
+                                '  Kelola' +
+                                '</button>' +
+                                ' <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                '   <span class="sr-only">Toggle Dropdown</span>' +
+                                '  </button>' +
+                                '  <div class="dropdown-menu">' +
+                                '  <a class="dropdown-item" href="<?= site_url() ?>admin/Siswa/index/' + row.npsn + '">Siswa</a>' +
+                                '  <a class="dropdown-item" href="#">Kelas</a>' +
+                                '  <a class="dropdown-item" href="#">Jurusan</a>' +
+                                ' <div class="dropdown-divider"></div>' +
+                                '  <a class="dropdown-item" href="#">Anggota</a>' +
+                                '  <a class="dropdown-item" href="#">Jadwal</a>' +
+                                '  <a class="dropdown-item" href="#">Prestasi</a>' +
+                                // ' <div class="dropdown-divider"></div>' +
+                                // '  <a class="dropdown-item" href="#">Berita Sekolah</a>' +
+                                // '  <a class="dropdown-item" href="#">Berita Ekstrakurikuler</a>' +
+                                '  </div>' +
+                                '</div>' +
+                                '</center>'
                         }
                     }
                 ],
@@ -150,7 +181,7 @@
                     [1, "desc"]
                 ],
                 "columnDefs": [{
-                    targets: [0, 4],
+                    targets: [0, 4, 5],
                     orderable: false
                 }],
                 drawCallback: function(settings) {
@@ -206,6 +237,10 @@
 
                 SimpanData()
             });
+
+            // $('#btn-lihat').click(function() {
+            //     $('#modal-kelola').modal('show');
+            // });
 
             $('#tabel-data').on('click', '#btn-ubah', function() {
                 $('input[name="npsn"]').prop('readonly', true)
