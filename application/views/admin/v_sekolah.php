@@ -162,12 +162,12 @@
                                 '  </button>' +
                                 '  <div class="dropdown-menu">' +
                                 '  <a class="dropdown-item" href="<?= site_url() ?>admin/Siswa/index/' + row.npsn + '">Siswa</a>' +
-                                '  <a class="dropdown-item" href="#">Kelas</a>' +
-                                '  <a class="dropdown-item" href="#">Jurusan</a>' +
+                                '  <a class="dropdown-item" href="<?= site_url() ?>admin/Kelas/index/' + row.npsn + '">Kelas</a>' +
+                                '  <a class="dropdown-item" href="<?= site_url() ?>admin/Jurusan/index/' + row.npsn + '">Jurusan</a>' +
                                 ' <div class="dropdown-divider"></div>' +
-                                '  <a class="dropdown-item" href="#">Anggota</a>' +
-                                '  <a class="dropdown-item" href="#">Jadwal</a>' +
-                                '  <a class="dropdown-item" href="#">Prestasi</a>' +
+                                '  <a class="dropdown-item" href="<?= site_url() ?>admin/Anggota/index/' + row.npsn + '">Anggota</a>' +
+                                '  <a class="dropdown-item" href="<?= site_url() ?>admin/Jadwal/index/' + row.npsn + '">Jadwal</a>' +
+                                '  <a class="dropdown-item" href="<?= site_url() ?>admin/Prestasi/index/' + row.npsn + '">Prestasi</a>' +
                                 // ' <div class="dropdown-divider"></div>' +
                                 // '  <a class="dropdown-item" href="#">Berita Sekolah</a>' +
                                 // '  <a class="dropdown-item" href="#">Berita Ekstrakurikuler</a>' +
