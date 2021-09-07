@@ -89,7 +89,12 @@ class M_beranda extends CI_Model
             from
                 sekolah
             where
-                status = "Belum Verifikasi") belum')->row();
+                status = "Belum Verifikasi") belum,
+                (
+            select
+                count(*)
+            from
+                eskul) eskul')->row();
         return $query;
     }
 

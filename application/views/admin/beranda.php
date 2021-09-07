@@ -80,7 +80,18 @@
                                             </div>
                                         </div>
 
-                                    
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="info-box">
+                                                <span class="info-box-icon bg-warning"><i class="fa fa-user"></i></span>
+
+                                                <div class="info-box-content">
+                                                    <span class="info-box-text">Ekstrakurikuler</span>
+                                                    <span class="info-box-number" id="eskul">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     </div>
 
                                 </div>
@@ -121,6 +132,7 @@
                     $('#aktif').empty().text(result.aktif)
                     $('#taktif').empty().text(result.taktif)
                     $('#belum').empty().text(result.belum)
+                    $('#eskul').empty().text(result.eskul)
                 }
             });
         })
