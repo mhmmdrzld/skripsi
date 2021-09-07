@@ -87,7 +87,9 @@
                 <a href="#" class="nav-link">
                     <i class="fas fa-user"></i>
                     <b> <?= $_SESSION['username'] ?></b>
-                    <?= (isset($_SESSION['nama_sekolah']) ? ' ( ' . $_SESSION['nama_sekolah'] . ' )' : '') ?>
+                    <?php if ($_SESSION['level'] != 'Admin') : ?>
+                        <?= (isset($_SESSION['nama_sekolah']) ? ' ( ' . $_SESSION['nama_sekolah'] . ' )' : '') ?>
+                    <?php endif ?>
                 </a>
             </li>
             <li class="nav-item">
