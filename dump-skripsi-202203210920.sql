@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: skripsi
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.38-MariaDB
+-- Server version	5.5.5-10.1.37-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -303,4 +303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-30 11:09:17
+-- Dump completed on 2022-03-21  9:20:20
